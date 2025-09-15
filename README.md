@@ -53,7 +53,7 @@ Modbas
 
 - 在系统目录下克隆仓库文件，例如：
 
-	git clone https://gitee.com/jizhi_shandong/aiotec.git
+	git clone https://github.com/zhangedwin/aiotec.git
 
 - 切换到安装文件目录，例如：
 
