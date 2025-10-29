@@ -30,8 +30,8 @@ AIOTEC 是新一代开源边缘计算系统，B/S架构可视化配置，是创�
 ![采集配置](screenshot/AIOTEC-Acquisition.jpg)
 GB28181
 ![GB28181](screenshot/AIOTEC-GB28181.jpg)
-Modbas
-![Modbas](screenshot/AIOTEC-Modbus.jpg)
+Modbus
+![Modbus](screenshot/AIOTEC-Modbus.jpg)
 模型管理（YOLO、大模型）
 ![模型管理](screenshot/AIOTEC-Model.jpg)
 
