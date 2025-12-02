@@ -59,6 +59,12 @@ Modbus
 - 切换到安装文件目录，例如：
 
 	cd /soft/aiotec
+	
+- 添加可执行权限
+
+	chmod +x gatewayclient
+
+	chmod +x ./lighttpd/lighttpd
 
 - 执行启动脚本，例如：
 
