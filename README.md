@@ -74,8 +74,15 @@ Modbus
 
 备注：
 系统的账户名为 admin, 密码为 jizhi@123
-操作系统重启后服务会自动启动，
+操作系统重启后服务会自动启动，替换版本时请先停止服务
 
+- 手动停止服务，例如：
+	
+	systemctl stop gateway-client
+	
+- 手动启动服务，例如：
+	
+	systemctl start gateway-client
 
 联系我们：
 
