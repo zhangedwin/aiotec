@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="104px" height="142px" viewBox="0 0 104 142" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>抽洗阀</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#AEB7BE" offset="0%"></stop>
+            <stop stop-color="#8E949A" offset="19.9080795%"></stop>
+            <stop stop-color="#E4E4E4" offset="47.0082633%"></stop>
+            <stop stop-color="#8E949A" offset="79.2376233%"></stop>
+            <stop stop-color="#AEB7BE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#AEB7BE" offset="0%"></stop>
+            <stop stop-color="#8E949A" offset="19.9080795%"></stop>
+            <stop stop-color="#E4E4E4" offset="47.0082633%"></stop>
+            <stop stop-color="#8E949A" offset="79.2376233%"></stop>
+            <stop stop-color="#AEB7BE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50.0003948%" y1="8.67361738e-15%" x2="50.0003948%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#636C77" offset="0%"></stop>
+            <stop stop-color="#8E9CAC" offset="16.7561619%"></stop>
+            <stop stop-color="#C4D3E3" offset="42.9503703%"></stop>
+            <stop stop-color="#8393A3" offset="64.3435954%"></stop>
+            <stop stop-color="#424D59" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50.0003948%" y1="8.67361738e-15%" x2="50.0003948%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#636C77" offset="0%"></stop>
+            <stop stop-color="#8E9CAC" offset="16.7561619%"></stop>
+            <stop stop-color="#C4D3E3" offset="42.9503703%"></stop>
+            <stop stop-color="#8393A3" offset="64.3435954%"></stop>
+            <stop stop-color="#424D59" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-5">
+            <stop stop-color="#636C77" offset="0%"></stop>
+            <stop stop-color="#8E9CAC" offset="15.9619454%"></stop>
+            <stop stop-color="#C4D3E3" offset="33.6758496%"></stop>
+            <stop stop-color="#8393A3" offset="59.2830997%"></stop>
+            <stop stop-color="#424D59" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-6">
+            <stop stop-color="#AEB7BE" offset="0%"></stop>
+            <stop stop-color="#8E949A" offset="19.9080795%"></stop>
+            <stop stop-color="#E4E4E4" offset="47.0082633%"></stop>
+            <stop stop-color="#8E949A" offset="79.2376233%"></stop>
+            <stop stop-color="#AEB7BE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-7">
+            <stop stop-color="#636C77" offset="0%"></stop>
+            <stop stop-color="#8E9CAC" offset="15.9619454%"></stop>
+            <stop stop-color="#C4D3E3" offset="33.6758496%"></stop>
+            <stop stop-color="#8393A3" offset="59.2830997%"></stop>
+            <stop stop-color="#424D59" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-8">
+            <stop stop-color="#636C77" offset="0%"></stop>
+            <stop stop-color="#8E9CAC" offset="15.9619454%"></stop>
+            <stop stop-color="#C4D3E3" offset="33.6758496%"></stop>
+            <stop stop-color="#8393A3" offset="59.2830997%"></stop>
+            <stop stop-color="#424D59" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50.0000001%" y1="11.2489073%" x2="50.0000007%" y2="89.5460009%" id="linearGradient-9">
+            <stop stop-color="#C33318" offset="0%"></stop>
+            <stop stop-color="#E63B1B" offset="48.8417832%"></stop>
+            <stop stop-color="#C33318" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="抽洗阀" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="编组">
+            <rect id="矩形" fill="url(#linearGradient-1)" x="68" y="66" width="30" height="6"></rect>
+            <path d="M93,58 L93,80 C93,80.5522847 92.5522847,81 92,81 L67,81 L67,81 L67,57 L92,57 C92.5522847,57 93,57.4477153 93,58 Z M89,61 L71,61 L71,77 L89,77 L89,61 Z" id="矩形" fill="url(#linearGradient-2)"></path>
+            <path d="M62,52 L66,52 C66.5522847,52 67,52.4477153 67,53 L67,85 C67,85.5522847 66.5522847,86 66,86 L62,86 C60.3431458,86 59,84.6568542 59,83 L59,55 C59,53.3431458 60.3431458,52 62,52 Z" id="矩形备份-34" fill="url(#linearGradient-3)"></path>
+            <rect id="矩形备份-33" fill="url(#linearGradient-4)" x="46.5" y="57" width="13" height="24"></rect>
+            <rect id="矩形" fill="url(#linearGradient-5)" x="14" y="32" width="33" height="76"></rect>
+            <rect id="矩形" fill="url(#linearGradient-6)" x="7" y="35" width="8" height="3"></rect>
+            <rect id="矩形备份-5" fill="url(#linearGradient-6)" x="7" y="20" width="8" height="3"></rect>
+            <rect id="矩形备份-2" fill="url(#linearGradient-6)" x="20" y="35" width="8" height="3"></rect>
+            <rect id="矩形" fill="url(#linearGradient-7)" x="19" y="0" width="23" height="24"></rect>
+            <rect id="矩形备份-6" fill="url(#linearGradient-6)" x="20" y="20" width="8" height="3"></rect>
+            <rect id="矩形备份-3" fill="url(#linearGradient-6)" x="33" y="35" width="8" height="3"></rect>
+            <rect id="矩形备份-7" fill="url(#linearGradient-6)" x="33" y="20" width="8" height="3"></rect>
+            <rect id="矩形备份-4" fill="url(#linearGradient-6)" x="46" y="35" width="8" height="3"></rect>
+            <rect id="矩形备份-8" fill="url(#linearGradient-6)" x="46" y="20" width="8" height="3"></rect>
+            <rect id="矩形备份" fill="url(#linearGradient-8)" x="0" y="23" width="61" height="12" rx="1"></rect>
+            <rect id="矩形" fill="url(#linearGradient-6)" transform="translate(11.000000, 105.500000) scale(1, -1) translate(-11.000000, -105.500000) " x="7" y="104" width="8" height="3"></rect>
+            <rect id="矩形备份-5" fill="url(#linearGradient-6)" transform="translate(11.000000, 120.500000) scale(1, -1) translate(-11.000000, -120.500000) " x="7" y="119" width="8" height="3"></rect>
+            <rect id="矩形备份-2" fill="url(#linearGradient-6)" transform="translate(24.000000, 105.500000) scale(1, -1) translate(-24.000000, -105.500000) " x="20" y="104" width="8" height="3"></rect>
+            <rect id="矩形" fill="url(#linearGradient-7)" transform="translate(30.500000, 130.000000) scale(1, -1) translate(-30.500000, -130.000000) " x="19" y="118" width="23" height="24"></rect>
+            <rect id="矩形备份-6" fill="url(#linearGradient-6)" transform="translate(24.000000, 120.500000) scale(1, -1) translate(-24.000000, -120.500000) " x="20" y="119" width="8" height="3"></rect>
+            <rect id="矩形备份-3" fill="url(#linearGradient-6)" transform="translate(37.000000, 105.500000) scale(1, -1) translate(-37.000000, -105.500000) " x="33" y="104" width="8" height="3"></rect>
+            <rect id="矩形备份-7" fill="url(#linearGradient-6)" transform="translate(37.000000, 120.500000) scale(1, -1) translate(-37.000000, -120.500000) " x="33" y="119" width="8" height="3"></rect>
+            <rect id="矩形备份-4" fill="url(#linearGradient-6)" transform="translate(50.000000, 105.500000) scale(1, -1) translate(-50.000000, -105.500000) " x="46" y="104" width="8" height="3"></rect>
+            <rect id="矩形备份-8" fill="url(#linearGradient-6)" transform="translate(50.000000, 120.500000) scale(1, -1) translate(-50.000000, -120.500000) " x="46" y="119" width="8" height="3"></rect>
+            <rect id="矩形" fill="url(#linearGradient-8)" transform="translate(30.500000, 113.000000) scale(1, -1) translate(-30.500000, -113.000000) " x="0" y="107" width="61" height="12" rx="1"></rect>
+            <rect id="矩形" fill="url(#linearGradient-9)" x="98" y="41" width="6" height="56" rx="3"></rect>
+        </g>
+    </g>
+</svg>
