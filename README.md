@@ -13,8 +13,8 @@ AIOTEC 是新一代开源边缘计算系统，B/S架构可视化配置，是创�
 ### 特性
 
 - 支持瑞芯微rk3568/rk3588架构、Debian11操作系统；
-- 物联中枢：多协议融合接入：兼容Modbus、MQTT、TCP/UDP、http等协议，支持PLC、传感器、仪表等传统设备接入；
-- 视觉分析：基于瑞芯微NPU（后期适配昇腾、英伟达）实现模型毫秒级响应，支持分析视频流，支持Qwen3-VL大模型；
+- 物联中枢：多协议融合接入：兼容Modbus、MQTT、TCP/UDP、http、IEC104等协议，支持PLC、传感器、仪表、zigbee等设备接入；
+- 视觉分析：基于瑞芯微NPU（后期适配昇腾、英伟达）实现模型毫秒级响应，支持分析视频流、录像分析，支持Qwen3-VL大模型；
 - 算法支持：火焰识别、未带安全帽、人脸识别、车牌识别、人员跌倒、人员聚集等；
 - 数据上报：物联网采集数据、直播视频流、分析结果视频流上报平台、104协议应用、断网续传；
 - 组态系统：无需编程基础，通过拖拽图形模块就能快速实现设备监控、数据展示和自动化控制，大幅提升工业自动化效率；
@@ -25,7 +25,7 @@ AIOTEC 是新一代开源边缘计算系统，B/S架构可视化配置，是创�
 ![架构](screenshot/AIOTEC%E6%9E%B6%E6%9E%84.png)
 ### 项目部分截图
 首页
-![首页](screenshot/AIOTEC-Index.jpg)
+![首页](screenshot/AIOTEC-Index.png)
 网络配置
 ![网络配置](screenshot/AIOTEC-Network.jpg)
 采集配置
@@ -36,7 +36,17 @@ Modbus
 ![Modbus](screenshot/AIOTEC-Modbus.jpg)
 模型管理（YOLO、大模型）
 ![模型管理](screenshot/AIOTEC-Model.jpg)
-
+规则引擎
+![新增联动场景](screenshot/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E%E6%96%B0%E5%A2%9E%E5%9C%BA%E6%99%AF.png)
+![规则引擎](screenshot/%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E1.png)
+视频录像
+![新增视频录像](screenshot/AIOTEC-Video.png)
+###新增功能
+组态系统
+![组态](screenshot/AIOTEC-SCADA.png)
+![组态内容](screenshot/AIOTEC-SCADA-1.png)
+人脸黑白名单
+![人脸库](screenshot/AIOTEC-AceDatabase.png)
 
 ## 开发计划
 
@@ -63,8 +73,6 @@ Modbus
 - 添加可执行权限
 
 	chmod +x gatewayclient
-
-	chmod +x ./lighttpd/lighttpd
 
 - 执行启动脚本，例如：
 
