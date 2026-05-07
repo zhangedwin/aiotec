@@ -13,7 +13,7 @@ AIOTEC 是新一代开源边缘计算系统，B/S架构可视化配置，是创�
 ### 特性
 
 - 支持瑞芯微rk3568/rk3588架构、Debian11操作系统；
-- 物联中枢：多协议融合接入：兼容Modbus、MQTT、TCP/UDP、http、IEC104等协议，支持PLC、传感器、仪表、zigbee等设备接入；
+- 物联中枢：多协议融合接入：兼容Modbus、MQTT、TCP/UDP、http、IEC104等协议，支持PLC、OPCUA、传感器、仪表、zigbee等设备接入；
 - 视觉分析：基于瑞芯微NPU（后期适配昇腾、英伟达）实现模型毫秒级响应，支持分析视频流、录像分析，支持Qwen3-VL大模型；
 - 算法支持：火焰识别、未带安全帽、人脸识别、车牌识别、人员跌倒、人员聚集等；
 - 数据上报：物联网采集数据、直播视频流、分析结果视频流上报平台、104协议应用、断网续传；
@@ -66,9 +66,9 @@ Modbus
 
 	git clone https://github.com/zhangedwin/aiotec.git
 
-- 切换到安装文件目录，例如：
+- 切换到相应架构的安装文件目录，例如：
 
-	cd /soft/aiotec
+	cd /soft/aiotec/bin/aarch64
 	
 - 添加可执行权限
 
