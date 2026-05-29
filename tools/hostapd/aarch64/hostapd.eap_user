@@ -1,0 +1,20 @@
+"0"*		AKA,TTLS,TLS,PEAP,SIM
+"1"*		SIM,TTLS,TLS,PEAP,AKA
+"2"*		AKA,TTLS,TLS,PEAP,SIM
+"3"*		SIM,TTLS,TLS,PEAP,AKA
+"4"*		AKA,TTLS,TLS,PEAP,SIM
+"5"*		SIM,TTLS,TLS,PEAP,AKA
+"6"*		AKA'
+"7"*		AKA'
+"8"*		AKA'
+*		PEAP,TTLS,TLS,SIM,AKA
+"test-97"  MSCHAPV2,GTC,SIM,AKA,AKA'    "12345678"   [2]
+"0"*		AKA	[2]
+"1"*		SIM	[2]
+"2"*		AKA	[2]
+"3"*		SIM	[2]
+"4"*		AKA	[2]
+"5"*		SIM	[2]
+"6"*		AKA'	[2]
+"7"*		AKA'	[2]
+"8"*		AKA'	[2]
