@@ -1,6 +1,6 @@
 #  AIOTEC Gatewaybox
 
-[AIOTEC 产品文档](http://www.wisdiot.com/aiotec/doc/)
+[AIOTEC 产品文档](http://www.wisdiot.com/doc/)
 
 
 ## 介绍
