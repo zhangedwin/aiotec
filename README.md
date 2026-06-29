@@ -62,7 +62,7 @@ Modbus
 
 ### 安装
 
-- 在系统目录下克隆仓库文件，例如：
+- 在系统目录下以root身份克隆仓库文件，例如：
 
 	git clone https://github.com/zhangedwin/aiotec.git
 
