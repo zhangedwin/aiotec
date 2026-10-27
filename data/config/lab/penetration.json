@@ -1,0 +1,58 @@
+{
+  "model_id": "penetration_model",
+  "min_confidence": 0.4,
+  "experiment_type": "penetration",
+  "roi": [
+    [
+      0.05,
+      0.1
+    ],
+    [
+      0.45,
+      0.1
+    ],
+    [
+      0.45,
+      0.9
+    ],
+    [
+      0.05,
+      0.9
+    ]
+  ],
+  "roi_rule": "center",
+  "min_box_overlap": 0.5,
+  "detector": {
+    "weights": "/opt/lab-edge/models/penetration.pt",
+    "target_classes": [
+      0
+    ],
+    "occluder_classes": [],
+    "confidence": 0.4,
+    "imgsz": 640,
+    "device": "cpu"
+  },
+  "debounce": {
+    "enter_s": 10.0,
+    "leave_s": 2.0,
+    "require_empty": true
+  },
+  "wait_next_s": 180.0,
+  "evidence": {
+    "event_pre_s": 3.0,
+    "event_post_s": 5.0,
+    "session_pre_s": 10.0,
+    "session_post_s": 2.0
+  },
+  "site_calibration_required": true,
+  "configuration_status": "SCHEMATIC_ROI_AND_CLASS_IDS_NOT_SITE_CALIBRATED",
+  "count_unit": "sample_cycle",
+  "max_frame_gap_s_note": "送入间隔阈值；与相机配置保持一致（低频送入的试验按实际间隔放大，如 1 fps 用 1.5）",
+  "debounce_note": "在场确认门槛：从首次观察到目标起，连续在场 ≥10.0s 且中间不出现任何一帧“不在场”才确认“进入”。2026-10-13 统一为 10.0s（原 1.0s），与无侧限保持一致 —— 目的是过滤“瞬时闪现/抖动”造成的误计。⚠️ 注意副作用：录像起点 = 首次看到 + (enter_s − session_pre_s)，即比“首次看到”晚 (enter_s − session_pre_s) 秒；若希望从更早开始录，把 session_pre_s 调大（例如 ≥ enter_s）。",
+  "evidence_note": "录像预卷：会话开始前 10.0s 起录。因 enter_s 现为 10.0s（在场需连续 ≥10s 才确认），确认时刻比“首次看到目标”晚 10s；取 session_pre_s = enter_s 后，录像起点正好回到“首次看到目标”那一刻 ✓（原为 5.0s，会比首次看到晚 5s 才开始录 ✗）。若还想把“首次看到之前”也录进去，把本值调到大于 enter_s（例如 15.0）。",
+  "max_frame_gap_s": 0.5,
+  "schema_version": 3,
+  "instance_id": "penetration",
+  "calibrated": false,
+  "note": "算法配置（文件名 = 算法名）：penetration。由原 camera_penetration_softening.json 的实例参数拆出；(camera) 标识与画面尺寸由构造入参给。"
+}

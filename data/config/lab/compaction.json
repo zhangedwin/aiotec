@@ -1,0 +1,180 @@
+{
+  "model_id": "compaction_model",
+  "min_confidence": 0.4,
+  "experiment_type": "compaction",
+  "roi": [
+    [
+      0.5,
+      0.05
+    ],
+    [
+      0.85,
+      0.05
+    ],
+    [
+      0.85,
+      0.7
+    ],
+    [
+      0.5,
+      0.7
+    ]
+  ],
+  "roi_rule": "center",
+  "min_box_overlap": 0.5,
+  "detector": {
+    "weights": "/opt/lab-edge/models/compaction_best.rknn",
+    "target_classes": [
+      0,
+      1
+    ],
+    "occluder_classes": [
+      2
+    ],
+    "confidence": 0.4,
+    "imgsz": 640,
+    "device": "cpu",
+    "backend": "onnxruntime",
+    "iou": 0.45
+  },
+  "debounce": {
+    "enter_s": 10.0,
+    "leave_s": 2.0,
+    "require_empty": true
+  },
+  "wait_next_s": 180.0,
+  "evidence": {
+    "event_pre_s": 3.0,
+    "event_post_s": 5.0,
+    "session_pre_s": 10.0,
+    "session_post_s": 2.0
+  },
+  "count_unit": "mold_operation_cycle",
+  "save_detection_audit": true,
+  "class_names": {
+    "0": "compactor_rod",
+    "1": "compaction_mold",
+    "2": "person",
+    "3": "weighing_unused",
+    "4": "add_soil_unused"
+  },
+  "roi_calibration": {
+    "method": "真实视频帧统计（NVR_ch3_main_20260413180614_20260413200733.dav，2560x1440，抽取 1~2 min 共 61 帧，每 1 s 一帧）",
+    "rod_center_x_pct": [
+      0.565,
+      0.565,
+      0.752,
+      0.752,
+      0.753
+    ],
+    "rod_center_y_pct": [
+      0.143,
+      0.144,
+      0.151,
+      0.154,
+      0.156
+    ],
+    "rod_box_px": "中位 18 x 122（细高，靠画面顶部）",
+    "mold_center_x_pct": [
+      0.565,
+      0.565,
+      0.736,
+      0.738,
+      0.738
+    ],
+    "mold_center_y_pct": [
+      0.445,
+      0.446,
+      0.482,
+      0.486,
+      0.486
+    ],
+    "mold_box_px": "中位 50 x 87",
+    "coverage": {
+      "machine_1": "rod 中心落在 roi 内 61/123、mold 60/121（占总检出的一半，即 100% 覆盖本机）",
+      "machine_2": "rod 62/123、mold 61/121（另一半，100% 覆盖本机）"
+    },
+    "note": "杆/筒检出恰好对半分给两台机器，说明两台机器的 roi 各自把本机检出 100% 罩住，现有 ROI 经实测验证正确，未作修改。",
+    "open_question": "machine_2 的 operation_roi 与 person 框在 61/61 帧（100%）都有重叠，machine_1 为 24/61（39.3%）：说明操作员常驻在 machine_2 一侧。这符合现场（操作员本来就在机旁），但会让 machine_2 的「停顿期间有人介入」条件实际恒为真、信息量偏低。若希望该条件更有区分度，需收紧 operation_roi 或改用「人-机距离」判据。"
+  },
+  "thresholds_calibration": {
+    "status": "TUNED_AGAINST_REAL_FOOTAGE",
+    "finding": "原默认值（max_rod_gap_s=0.3、move_confirm_s=1.0）与实际击实节奏不兼容，导致判据静默失效：实测 NVR_ch3_main_20260413180614（2560x1440，25fps 逐帧送入）中，machine_2 的击实锤每周期约 1.6s，其中约 0.5s 杆被遮挡而检不到（11 段、每段 0.44~0.56s，周期性出现）。后果有两条：① max_rod_gap_s=0.3 < 0.5，观测窗口每个周期都被清空；② classify 在 !has 时直接 return \"unknown\"，即使窗口保住了，verdict 也会被周期性打断，move_confirm_s=1.0 的 Hold 永远凑不满 1 秒。现象是「只报 MOLD_PLACED、从不报 COMPACTION_START」，不报错不告警。",
+    "evidence": "同一份检测框（NVR1 的 126~149s @25fps，576 帧）用 replay_camera 跑 A/B：原参数 → 只有 MOLD_PLACED×2；调参后 → COMPACTION_START 于 135.04s 起判（人工确认 132s 已开始击实，滞后 3s 属正常：需先确认筒稳定再确认杆运动）。",
+    "changed": {
+      "max_rod_gap_s": "0.3 → 0.8（容纳每周期约 0.5s 的遮挡）",
+      "max_gap_s": "0.5 → 1.0（配置校验要求 max_rod_gap_s ≤ max_gap_s）",
+      "pause_rod_lost_max_s": "1.0 → 1.5（配置校验要求 > max_rod_gap_s）",
+      "move_confirm_s": "1.0 → 0.6（杆连续在场最长约 1.1s，1.0 秒的 Hold 永远满足不了）"
+    },
+    "constraints": "config.cpp 校验：stable_range < motion_amplitude；max_rod_gap_s ≤ max_gap_s；max_rod_gap_s < pause_rod_lost_max_s；max_gap_s < window_s(2.0)。改任何一个都要满足这组关系，否则加载报 invalid compaction thresholds。",
+    "open_question": "根因之一是代码在 !has 时直接返回 \"unknown\"（compaction.h:57-59），语义上更像是「本帧无证据」而非「没在动」。若希望更稳，可改为：缺口未超过 max_rod_gap_s 时沿用上一次 verdict。这属代码改动，需重新做等价性比对。"
+  },
+  "compaction": {
+    "window_s": 2.0,
+    "max_gap_s": 1.0,
+    "max_rod_gap_s": 0.8,
+    "motion_amplitude": 0.015,
+    "stable_range": 0.004,
+    "min_reversals": 2,
+    "move_confirm_s": 0.6,
+    "pause_confirm_s": 3.0,
+    "mold_confirm_s": 1.0,
+    "remove_confirm_s": 4.0,
+    "person_confirm_s": 1.0,
+    "min_run_s": 10.0,
+    "min_pause_s": 5.0,
+    "pause_rod_lost_max_s": 1.5,
+    "pause_rod_lost_ratio_max": 0.3,
+    "confidence": 0.4,
+    "classes": {
+      "rod": 0,
+      "mold": 1,
+      "person": 2
+    },
+    "machines": [
+      {
+        "id": "machine_1",
+        "roi": [
+          0.5449,
+          0.109,
+          0.6293,
+          0.5736
+        ],
+        "operation_roi": [
+          0.52,
+          0.2,
+          0.68,
+          0.65
+        ]
+      },
+      {
+        "id": "machine_2",
+        "roi": [
+          0.7117,
+          0.0875,
+          0.7895,
+          0.6257
+        ],
+        "operation_roi": [
+          0.69,
+          0.2,
+          0.84,
+          0.68
+        ]
+      }
+    ],
+    "emit_detail_events": false,
+    "emit_detail_events_note": "降噪（2026-10-15）：默认只输出“推定层数 +1”那一条（LAYER_START_INFERRED）；停顿 COMPACTION_PAUSE、人员介入 INTERVENTION_CANDIDATE、以及“动了但没算一层”的 COMPACTION_RESUME 默认不发声。需要全量过程日志时改为 true。"
+  },
+  "site_calibration_required": false,
+  "configuration_status": "ROI_VERIFIED_AGAINST_REAL_FRAMES; CLASS_NAMES_FROM_MODEL",
+  "max_frame_gap_s_note": "送入间隔阈值；与相机配置保持一致（低频送入的试验按实际间隔放大，如 1 fps 用 1.5）",
+  "debounce_note": "在场确认门槛：从首次观察到目标起，连续在场 ≥10.0s 且中间不出现任何一帧“不在场”才确认“进入”。2026-10-13 统一为 10.0s（原 1.0s），与无侧限保持一致 —— 目的是过滤“瞬时闪现/抖动”造成的误计。⚠️ 注意副作用：录像起点 = 首次看到 + (enter_s − session_pre_s)，即比“首次看到”晚 (enter_s − session_pre_s) 秒；若希望从更早开始录，把 session_pre_s 调大（例如 ≥ enter_s）。",
+  "evidence_note": "录像预卷：会话开始前 10.0s 起录。因 enter_s 现为 10.0s（在场需连续 ≥10s 才确认），确认时刻比“首次看到目标”晚 10s；取 session_pre_s = enter_s 后，录像起点正好回到“首次看到目标”那一刻 ✓（原为 5.0s，会比首次看到晚 5s 才开始录 ✗）。若还想把“首次看到之前”也录进去，把本值调到大于 enter_s（例如 15.0）。",
+  "max_frame_gap_s": 0.5,
+  "schema_version": 3,
+  "instance_id": "compaction",
+  "calibrated": true,
+  "note": "算法配置（文件名 = 算法名）：compaction。由原 camera_compaction_unconfined.json 的实例参数拆出；(camera) 标识与画面尺寸由构造入参给。"
+}

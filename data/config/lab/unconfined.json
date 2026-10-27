@@ -1,0 +1,69 @@
+{
+  "model_id": "unconfined_model",
+  "min_confidence": 0.4,
+  "experiment_type": "unconfined",
+  "roi": [
+    [
+      0.2561,
+      0.3027
+    ],
+    [
+      0.3094,
+      0.3027
+    ],
+    [
+      0.3094,
+      0.4216
+    ],
+    [
+      0.2561,
+      0.4216
+    ]
+  ],
+  "roi_rule": "center",
+  "min_box_overlap": 0.5,
+  "detector": {
+    "weights": "/opt/lab-edge/models/compression_strength.rknn",
+    "target_classes": [
+      1
+    ],
+    "occluder_classes": [],
+    "confidence": 0.4,
+    "imgsz": 640,
+    "device": "0"
+  },
+  "debounce": {
+    "enter_s": 10.0,
+    "leave_s": 2.0,
+    "require_empty": true
+  },
+  "wait_next_s": 180.0,
+  "evidence": {
+    "event_pre_s": 3.0,
+    "event_post_s": 5.0,
+    "session_pre_s": 10.0,
+    "session_post_s": 2.0
+  },
+  "class_names": {
+    "0": "platen",
+    "1": "soil_sample"
+  },
+  "class_names_note": "按 2026-10-13 版 YOLO11n 模型元信息逐字保留（2 类）。上一版为 3 类：0=loading_asmple / 1=platen_idle / 2=soil_sample。",
+  "target_classes_note": "目标类取 [1] soil_sample（试样）。判据：soil_sample 框中心落在 platen（压板）区域内 = 试样放进工区。选 [1] 而非 [0] 的依据：platen 是试验机固定部件，在工位几乎全程在场（最长缺席 1.44s < leave_s 2.0s），永远构不成“离场→在场”循环 → 实测取 [0] 时判据 0 事件；soil_sample 才有真实的进出循环。",
+  "roi_calibration": {
+    "status": "ROI_TAKEN_FROM_PLATEN_BOX",
+    "method": "读取 2026-10-13 版 YOLO11n 无侧限模型在真实视频（NVR_ch3 土工室 540~900s，720 帧）上检出的 platen(class 0) 框并集：像素 [656,436,792,607] @2560x1440。platen 检出率 97.9%、中心 σ=2.3px、尺寸 σ≈4px —— 位置极稳定。",
+    "rule": "土壤试样放进工区 = soil_sample(class 1) 的框中心落在 platen 区域内（roi_rule=center 语义）",
+    "equivalence": "与“逐帧把检测到的 platen 框当 ROI”两种实现逐帧一致 718/720（99.7%）→ 固定 ROI 实现等价，无需改代码。若将来需要自适应（机位/机器会移动），再考虑新增“ROI 由某类检测框动态给出”的判据变体。"
+  },
+  "configuration_status": "ROI_CORRECTED_BY_USER; CLASS_LAYOUT_11N_2CLS_20261013; TARGET_CLASS_1_SET_FROM_END_TO_END_TEST_20261013; ROI_SET_TO_PLATEN_BOX_20261013; ENTER_S_10S_20261013",
+  "count_unit": "sample_cycle",
+  "max_frame_gap_s_note": "送入间隔阈值；与相机配置保持一致（低频送入的试验按实际间隔放大，如 1 fps 用 1.5）",
+  "debounce_note": "在场确认门槛：从首次观察到试样起，连续在场 ≥10.0s 且中间不出现任何一帧“不在场”才确认“进入”。2026-10-13 用户要求（原值 1.0s）：2fps 采样下 703.68s 那次实为 0.6s 一闪而被误判，现场实际只有 2 次（第二次在 718s 附近）。5fps 复测：enter_s=10.0 给出 2 次 SAMPLE_IN（552.8 / 727.2），与现场一致。⚠️ 该门槛要求送入频率足够高（建议 ≥5fps）：送入太稀会把瞬时闪烁放大成“在场”，也会把真实的连续在场切碎。",
+  "evidence_note": "录像预卷：会话开始前 10.0s 起录。因 enter_s 现为 10.0s（在场需连续 ≥10s 才确认），确认时刻比“首次看到目标”晚 10s；取 session_pre_s = enter_s 后，录像起点正好回到“首次看到目标”那一刻 ✓（原为 5.0s，会比首次看到晚 5s 才开始录 ✗）。若还想把“首次看到之前”也录进去，把本值调到大于 enter_s（例如 15.0）。",
+  "max_frame_gap_s": 0.5,
+  "schema_version": 3,
+  "instance_id": "unconfined",
+  "calibrated": true,
+  "note": "算法配置（文件名 = 算法名）：unconfined。由原 camera_compaction_unconfined.json 的实例参数拆出；(camera) 标识与画面尺寸由构造入参给。"
+}
